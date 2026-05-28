@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "component": "email_reader",
+      "input_params": {
+        "limit": 2
+      },
+      "output_summary": [
+        {
+          "sender": "alert@info.bigbasket.com",
+          "subject": "Mehfil-e-Eid \ud83c\udf19 Recipe Contest & More \ud83e\udd58",
+          "date": "2026-05-28 20:26:27+05:30",
+          "body": "Emailer\r\n      \r\n  Eid ki Daawat   The big pots have come out and the preparation for Eid is finally in full swing. This year, we're making your celebration even more special with Eid recipes from around the world. Discover comforting one-pot wonders and indulgent make-ahead desserts designed to fill your holiday table with richness, flavour, and warmth. \r\n       \r\n    \r\n#   1    \r\n The Eid  Handi      Every Eid table has its own traditions. Today, we're travelling across borders, from the coast of Morocco to the hills of Jordan, bringing you five legendary feasts. These slow-cooked wonders are made for generous servings and happy get-togethers. All you need is a heavy pot, a handful of fragrant spices, and a little love!\r\n   \r\n        \r\n    \r\n#   2    \r\n Eid Wali  Mithaas      The feast never truly ends until the sweets arrive\u2014and no matter how full you are, there\u2019s always room for Eid mithai. Today\u2019s dessert menu features global favourites such as Turkey\u2019s rose-soaked g\u00fclla\u00e7, Morocco\u2019s honey-glazed chebakia, and more. The best part? These recipes are easy to prepare ahead of time, ensuring that your grand finale comes together effortlessly. \r\n   \r\n       \r\n  # 3\r\n         Does your Eid masterpiece deserve attention? Share the recipe with us for a chance to win a bb gift card worth \u20b9500. \r\n   \r\n Contest ends on: 2 June 2026       \r\n     \r\n#   4    \r\n Eid Recipe  Inspirations          \r\n    \r\n    \r\n      \r\n      \r\n            \r\n    \r\n       \r\n      Powered By  \r\n     \r\n       \r\n Spread the word!   Love, All of us at bigbasket   Click here to opt-out\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    \r\n    \r\n    \r\n    \r\n\r\n Did you ever imagine that the freshest of fruits and vegetables, top quality pulses and food grains, dairy products and hundreds of branded items could be handpicked and delivered to your home, all at the click of a button? India\u2019s first comprehensive online megastore, bigbasket.com, brings a whopping 20000+ products with more than 1000 brands, to over 4 million happy customers. From household cleaning products to beauty and makeup, bigbasket has everything you need for your daily needs. bigbasket.com is convenience personified We\u2019ve taken away all the stress associated with shopping for\r\ndaily essentials, and you can now order all your household products and even buy groceries online without travelling long distances or standing in serpentine queues. Add to this the convenience of finding all your requirements at one single source, along with great savings, and you will realize that bigbasket- India\u2019s largest online supermarket, has revolutionized the way India shops for groceries. Online grocery shopping has never been easier. Need things fresh? Whether it\u2019s fruits and vegetables or dairy and meat, we have this covered as well! Get fresh eggs, meat, fish and more online\r\nat your convenience. Hassle-free Home Delivery optionsWe deliver to 25 cities across India and maintain excellent delivery times, ensuring that all your products from groceries to snacks branded foods reach you in time.\r\n\r\n"
+        },
+        {
+          "sender": "datawithbaraa@substack.com",
+          "subject": "AI Engineering Is Just Data Engineering With New Sources",
+          "date": "2026-05-28 14:46:38+00:00",
+          "body": "View this post on the web at https://www.blog.datawithbaraa.com/p/ai-engineering-is-just-data-engineering\r\n\r\nHey friends, Happy Thursday!\r\nTwo, three years ago, when I started hearing about AI engineering, my first reaction was:\r\n\u201cSounds like a different world. Not for me.\u201d\r\nI was wrong about that. And after seeing how it played out in my own projects, I think a lot of you are sitting in the same spot I was sitting in back then.\r\nLet me walk you through how I figured it out.\r\nHow it crept into my own projects\r\nIt didn\u2019t happen in one big moment. It happened slowly.\r\nI can tell you from my projects, over time, I started catching myself adding small AI components here and there. A little embedding step. A small retrieval thing. Nothing fancy at first.\r\nAnd then customers started asking for it. They had real data platforms already, working, in production, and now they were saying:\r\n\u201cHey, can you extend this with our AI use cases?\u201d\r\nSo I found my data platform turning into a data and AI platform. Without me planning it. Without a big strategic decision. Project by project, it just kept happening.\r\nAnd once I noticed it, I went and looked at the numbers.\r\nThis is not the future. It is already happening.\r\nThere was a survey from MIT and Snowflake. They asked around four hundred senior data and tech leaders how much time their teams were spending on AI work.\r\nBack in 2023, it was around 19%.\r\nToday it is around 37%.\r\nAnd in two years, they expect more than 60%.\r\nSo no, my friends, this is not the future. This is already happening to us.\r\nThe job didn\u2019t get replaced. The job grew a new layer.\r\nAnd once you understand that, the question is not \u201cdo I need to care about AI engineering?\u201d. The question becomes \u201chow do I fit it into what I already do?\u201d\r\nThe two-worlds confusion\r\nI get this a lot from messages and comments. People line up the two sides like this.\r\nOn the data engineering side, we have what we have always done. ETL, data modeling, storage, pipelines, scheduling, data quality, DevOps. The stuff we do every day at work.\r\nOn the AI engineering side, suddenly different words. RAG, embeddings, vector databases, prompt engineering, fine-tuning, agents, LLMOps. All shiny, all new, all confusing.\r\nAnd if you sit back and just look at this split, you say:\r\n\u201cOkay, two different worlds. Nothing to do with me.\u201d\r\nThat was my reaction too. But once you look closer, you see something else.\r\nLook closer. Same pattern.\r\nYou know how a classical data engineering project flows. Sources (databases, files, APIs), pipeline, warehouse or lakehouse, BI tools and dashboards. You have built it a hundred times.\r\nSources \u2192 Pipeline \u2192 Storage \u2192 Consumption.\r\nNow look at the AI side. RAG, retrieval-augmented generation, sounds fancy. But the story is the same.\r\nThe sources are different. This time it is documents, PDFs, emails, tickets, web pages. The pipeline cleans them, splits them into chunks, and turns them into embeddings. So instead of aggregating, we transform text into numbers. The storage is different too. Instead of a warehouse, we use a vector database. And at the end, the data gets consumed by AI agents and LLMs, that go read it to answer questions with the right context.\r\nNow put both side by side.\r\nSame layering. Different transformations.\r\nThat is the moment it clicked for me. AI engineering is not a parallel universe. It is another use case sitting on top of the same skeleton we have been building for years.\r\nCompanies don\u2019t build two ecosystems\r\nNow the big practical question. Are companies building two separate platforms? One for data, one for AI?\r\nThe honest answer is no.\r\nMost of the companies I work with already have solid data engineering projects. They are not going to throw that away and start from scratch. So what they do is they extend the existing platform.\r\nNew sources come in. Documents, PDFs, emails, tickets, web pages.\r\nThe pipeline grows to handle them, with cleaning, chunking, embedding.\r\nThe storage layer gets a new component, the vector database, sitting next to the warehouse and the lakehouse.\r\nAnd in the consumption layer, AI agents plug in.\r\nSo we treat AI use cases like any other data engineering requirement. New sources, new pipelines, new storage, new consumers.\r\nAnd here is where it gets really good. The AI agent doesn\u2019t only have access to the vector database. It can also reach into the whole lakehouse. All your data is right there.\r\nMore data, more context, more use cases.\r\nThis is exactly why AI engineering is so close to us. Because the data layer we have been building for years is exactly what AI needs.\r\nSo where do AI engineers fit?\r\nGood question, and I get it a lot.\r\nIf data engineers can do the whole AI pipeline, why do we even need AI engineers?\r\nSame reason we have data analysts, data scientists, BI developers. We data engineers don\u2019t do the full thing end to end. We pick the source systems, we process the data, we store it in a shape that is easy to consume. And then we stop.\r\nWe don\u2019t decide if the users should use Power BI or Tableau. We don\u2019t sit with stakeholders to define business metrics. We don\u2019t go and design the dashboards. That is not our part.\r\nSame with AI. We will not pick which LLM model to use for which use case. We will not design the chatbot interface. We will not build the APIs that the business application calls. All those decisions live on the consumer side.\r\nWe own the data processing part. We always did.\r\nSame job. Different consumers.\r\nAnd honestly, this isn\u2019t the first time we\u2019ve gone through this kind of shift.\r\nETL \u2192 Big Data \u2192 Cloud \u2192 AI\r\nWhen I started in this industry, we were called ETL developers. Then the world shifted, and suddenly we were big data engineers, working with Hadoop, MapReduce, all that stuff.\r\nThen the cloud came. Azure, AWS, Databricks, Snowflake. We became modern data engineers.\r\nAnd now we are in another shift. AI use cases. New sources. New components. New consumers.\r\nBut in the heart of the job, my friend, nothing changed.\r\nWe move data from A to B. We process it on the way. We make it easy to consume for the next person.\r\nThat is what we do. That is what we will keep doing.\r\nSo what should you actually do?\r\nYou have three options.\r\nOption 1: switch completely. Drop data engineering and become a full AI engineer end to end.\r\nOption 2: ignore the whole thing. Stay where you are, do what you do, hope nobody asks.\r\nOption 3 (this is the one I recommend): stay as a data engineer and add the new AI engineering pieces to your skill set. Combine the two worlds.\r\nAnd honestly, this is not that hard. You don\u2019t need to become an LLM expert. You just need to learn a few things:\r\nHow to connect documents as a source.\r\nHow to split text into chunks.\r\nHow to turn it into embeddings.\r\nHow to store it in a vector database.\r\nHow to query a vector database.\r\nThat is the RAG pipeline. And it is exactly the kind of work we already know how to think about. Just new components on top of patterns we have used for years.\r\nPut one project like this on your portfolio, and you are already ahead of most data engineers in the market right now.\r\nSo \u2026\r\nAI engineering is not a different world. It is the next layer of data engineering.\r\nIf you are a data engineer, you are already much closer to it than you think. You just need to extend.\r\nAnd honestly, I\u2019ll tell you where I think this is going. In two or three years, the job titles will look different. The work will look the same. The people who get hired will be the ones who already extended.\r\nSo don\u2019t see AI as a threat. See it as the next chapter of the same job you have been doing all along.\r\nThanks for reading \u2764\ufe0f\r\nBaraa\r\nAlso, here are 4 complete roadmap videos if you\u2019re figuring out where to start:\r\n\ud83d\udccc Data Engineering Roadmap [ https://substack.com/redirect/57d6ba2b-7af2-4610-bd26-67c7ec279db2?j=eyJ1IjoiNzZpNzhyIn0.jf8RHdoFq9uoHqL-NEeyzzhImq_NlNx1airofZuY2u0 ]\r\n\ud83d\udccc Data Science Roadmap [ https://substack.com/redirect/7a49c26f-16bb-4926-abbc-d51ab6400ef7?j=eyJ1IjoiNzZpNzhyIn0.jf8RHdoFq9uoHqL-NEeyzzhImq_NlNx1airofZuY2u0 ]\r\n\ud83d\udccc Data Analyst Roadmap [ https://substack.com/redirect/ac20a09c-af7c-42be-bed1-f9bd30e9bdc1?j=eyJ1IjoiNzZpNzhyIn0.jf8RHdoFq9uoHqL-NEeyzzhImq_NlNx1airofZuY2u0 ]\r\n\ud83d\udccc AI Engineering Roadmap [ https://substack.com/redirect/235cdf76-e447-4704-9772-266145ee2179?j=eyJ1IjoiNzZpNzhyIn0.jf8RHdoFq9uoHqL-NEeyzzhImq_NlNx1airofZuY2u0 ]\r\nHey friends \u2014\r\nHey, I\u2019m Baraa, a Data Engineer with over 17 years experience, Ex-Mercedes Benz, where I led and built one of the biggest data platforms for analytics and AI.\r\nNow I\u2019m here to share it all through visually explained courses, real-world projects, and the skills that will get you hired. I\u2019ve helped millions of students transform their careers.\r\n\r\nUnsubscribe https://substack.com/redirect/2/eyJlIjoiaHR0cHM6Ly93d3cuYmxvZy5kYXRhd2l0aGJhcmFhLmNvbS9hY3Rpb24vZGlzYWJsZV9lbWFpbD90b2tlbj1leUoxYzJWeVgybGtJam8wTXpReE9UQXhNak1zSW5CdmMzUmZhV1FpT2pFNU9UWXdPVEUwTVN3aWFXRjBJam94TnpjNU9UYzVPREEyTENKbGVIQWlPakU0TVRFMU1UVTRNRFlzSW1semN5STZJbkIxWWkweE1qazBOemMySWl3aWMzVmlJam9pWkdsellXSnNaVjlsYldGcGJDSjkuVXR5Smdka3RhWE1Ya2haa1B4UlZsdEJhZTdmT0FJcm1FeExTNVhkR1ZlTSIsInAiOjE5OTYwOTE0MSwicyI6MTI5NDc3NiwiZiI6dHJ1ZSwidSI6NDM0MTkwMTIzLCJpYXQiOjE3Nzk5Nzk4MDYsImV4cCI6MjA5NTU1NTgwNiwiaXNzIjoicHViLTAiLCJzdWIiOiJsaW5rLXJlZGlyZWN0In0.wJ8woWGn2YtwLVGDw8yuOgbNFe-fh-FPs_W9uuy_jwY?"
+        }
+      ],
+      "duration_seconds": 3.173,
+      "status": "success"
+    },
+    {
+      "step": 2,
+      "component": "pdf_parser",
+      "input_params": {
+        "pdf_path": "test_data/Invoice1.pdf"
+      },
+      "output_summary": {
+        "vendor": "Elite Moments Events LLC",
+        "invoice_no": "123",
+        "invoice_date": "23/05/2026",
+        "due_date": "06/06/2026",
+        "amount": "5,995",
+        "currency": "AED",
+        "line_items": [
+          {
+            "item_name": "LED Stage Setup",
+            "unit_price": "2,000",
+            "quantity": "2",
+            "amount": "4,000"
+          },
+          {
+            "item_name": "Photography & Videography",
+            "unit_price": "1,800",
+            "quantity": "1",
+            "amount": "1,800"
+          }
+        ]
+      },
+      "duration_seconds": 0.029,
+      "status": "success"
+    },
+    {
+      "step": 3,
+      "component": "llm_extractor",
+      "input_params": {
+        "raw_text": "Invoice Number: INV-001\nVendor: Vendor A\nAmount: 5000 INR\nDue Date: 2026-07-01"
+      },
+      "output_summary": {
+        "vendor": "Vendor A",
+        "invoice_no": "INV-001",
+        "amount": "5000",
+        "currency": "INR",
+        "invoice_date": null,
+        "due_date": "2026-07-01",
+        "line_items": []
+      },
+      "duration_seconds": 2.709,
+      "status": "success"
+    },
+    {
+      "step": 4,
+      "component": "validator",
+      "input_params": {
+        "invoice": {
+          "vendor": "Vendor A",
+          "amount": 5000,
+          "due_date": "2026-07-01",
+          "currency": "INR"
+        }
+      },
+      "output_summary": {
+        "valid": true,
+        "errors": []
+      },
+      "duration_seconds": 0.0,
+      "status": "success"
+    }
+  ],
+  "status": "completed"
+}
