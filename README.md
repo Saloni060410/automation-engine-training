@@ -163,16 +163,6 @@ Logs are written to `logs/app.log`.
 
 ---
 
-## Team
-
-| Name | Component |
-|---|---|
-| Saloni | email_reader, pipeline, FastAPI |
-| Vaishu | validator, QA test matrix |
-| Saurabh | pdf_parser, llm_extractor |
-
----
-
 ## Project Structure
 
 ```
