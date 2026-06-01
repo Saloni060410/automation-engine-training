@@ -1,3 +1,16 @@
+"""Invoice validator component for the automation engine.
+
+Applies business rules to validate invoice dictionaries
+against a set of approved vendors, credit limits, date
+constraints, and accepted currencies. The four enforced rules
+are: (1) vendor must be in the APPROVED_VENDORS list, (2)
+amount must be positive and within the vendor credit limit,
+(3) due date must be a future date in ISO format, (4) currency
+must be INR or USD. Returns a result dict with 'valid' boolean
+and an 'errors' list. All validation errors are collected
+before returning so every problem is visible at once.
+"""
+
 import logging
 import datetime
 
@@ -15,7 +28,7 @@ CREDIT_LIMITS = {
 
 def validate_invoice(invoice: dict) -> dict:
     try:
-      return _validate(invoice)
+        return _validate(invoice)
     except Exception as e:
         logger.error('Component failed: %s', e)
         raise

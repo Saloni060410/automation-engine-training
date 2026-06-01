@@ -1,3 +1,16 @@
+"""PDF parser component for the automation engine.
+
+Extracts structured invoice data from PDF files using PyMuPDF
+(fitz) for text-based PDFs and pytesseract OCR for scanned
+image PDFs. The parser identifies key fields — vendor, invoice
+number, dates, total amount, currency, and line items — using
+regex patterns and label-based heuristics. Input is a file
+path; output is a dictionary matching the standard invoice
+schema. Raises FileNotFoundError for missing files and
+RuntimeError for unreadable PDFs. All errors are logged via
+Python's logging module before being re-raised to the caller.
+"""
+
 import re
 import os
 import logging

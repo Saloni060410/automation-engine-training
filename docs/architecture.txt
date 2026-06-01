@@ -1,0 +1,92 @@
+
+                    AUTOMATION ENGINE — ARCHITECTURE
+    ═══════════════════════════════════════════════════════════════
+
+    PIPELINE (pipeline.py)
+    ──────────────────────────────────────────────────────────────
+
+      ┌─────────────────┐
+      │   Gmail Inbox   │
+      │  (IMAP / PDF)   │
+      └────────┬────────┘
+               │  Step 1
+               ▼
+      ┌─────────────────┐
+      │  email_reader   │  fetch_latest_pdf_email()
+      │                 │  → (subject, sender, pdf_bytes)
+      └────────┬────────┘
+               │  Step 2
+               ▼
+      ┌─────────────────┐
+      │   pdf_parser    │  parse_invoice(pdf_path)
+      │  PyMuPDF + OCR  │  → {vendor, amount, dates, ...}
+      └────────┬────────┘
+               │  Step 3
+               ▼
+      ┌─────────────────┐
+      │  llm_extractor  │  extract_invoice(raw_text)
+      │  Google Gemini  │  → InvoiceData (structured)
+      └────────┬────────┘
+               │  Step 4
+               ▼
+      ┌─────────────────┐
+      │   validator     │  validate_invoice(invoice)
+      │  4 bus. rules   │  → {valid: bool, errors: []}
+      └────────┬────────┘
+               │  Step 5
+       ┌───────┴────────┐
+       │                │
+       ▼                ▼
+  ┌──────────┐   ┌─────────────┐
+  │api_caller│   │    Slack    │
+  │ POST SAP │   │  Webhook    │
+  └──────────┘   └─────────────┘
+
+
+    FASTAPI LAYER (api/main.py)
+    ──────────────────────────────────────────────────────────────
+
+      HTTP Request
+           │
+           ▼
+      ┌────────────────────────────────────────────┐
+      │  FastAPI  (localhost:8000)                 │
+      │                                            │
+      │  POST /run-workflow  ──▶  engine.py        │
+      │                            parse_command() │
+      │                               │            │
+      │                               ▼            │
+      │                          executor.py       │
+      │                        execute_workflow()  │
+      │                               │            │
+      │  GET  /health        ◀────────┘            │
+      │       {status, components}                 │
+      └────────────────────────────────────────────┘
+
+
+    REACT FRONTEND (frontend/  localhost:3000)
+    ──────────────────────────────────────────────────────────────
+
+      ┌─────────────────────────────────────────────┐
+      │  CommandInput  →  WorkflowCanvas             │
+      │  (text + Run)     (step node cards)          │
+      │                        │                     │
+      │                        ▼                     │
+      │                  ExecutionStatus             │
+      │                  (log per step)              │
+      └─────────────────────────────────────────────┘
+
+
+    DATA FLOW SUMMARY
+    ──────────────────────────────────────────────────────────────
+
+      plain-English command
+            │
+            ▼  Gemini function-calling
+      workflow JSON  [{step, component, params}, ...]
+            │
+            ▼  executor loops through steps
+      execution log  {status, steps: [{output, duration}, ...]}
+            │
+            ▼
+      logs/run_<timestamp>.json  +  logs/app.log

@@ -1,4 +1,16 @@
-# components/llm_extractor.py
+"""LLM extractor component for the automation engine.
+
+Uses the Google Gemini API to extract structured invoice data
+from raw text. The extraction is driven by a prompt loaded
+from prompts/invoice_extract.txt and enforced through a
+Pydantic schema (InvoiceData). Supports automatic model
+fallback across gemini-2.0-flash, gemini-2.0-flash-lite, and
+gemini-2.5-flash to handle quota limits. Implements retry
+logic for rate-limit (429) and server errors. Returns an
+InvoiceData object on success. Raises an Exception if all
+models are exhausted. Errors are logged via Python's logging
+module throughout.
+"""
 
 import os
 import json
@@ -88,7 +100,7 @@ INVOICE TEXT:
 
     for model in MODELS:
 
-        print(f"Trying model: {model}")
+        logger.info('llm_extractor: trying model %s', model)
 
         retry_count = 0
         max_retries = 4
@@ -110,19 +122,13 @@ INVOICE TEXT:
                 return InvoiceData(**parsed_json)
 
             except json.JSONDecodeError:
-
-                print(
-                    f"JSON Parse Error. Retrying... "
-                    f"Attempt {retry_count + 1}"
-                )
                 logger.error('Component failed: JSON parse error on attempt %d', retry_count + 1)
-
                 retry_count += 1
 
             except ClientError as e:
 
                 if e.code != 429:
-                    print(f"API Error ({e.code}): {e.message}")
+                    logger.error('Component failed: API error (%s) %s', e.code, e.message)
                     break
 
                 details = (e.details or {}).get("error", {}).get("details", [])
@@ -138,33 +144,19 @@ INVOICE TEXT:
                         retry_delay = int(float(delay_str.rstrip("s"))) + 1
 
                 if any("PerDay" in v.get("quotaId", "") for v in violations):
-                    print(
-                        f"Daily quota exhausted for {model}. "
-                        f"Trying next model..."
-                    )
+                    logger.warning('llm_extractor: daily quota exhausted for %s, trying next model', model)
                     break
 
-                print(
-                    f"Rate limit hit. Waiting {retry_delay}s before retry... "
-                    f"Attempt {retry_count + 1}"
-                )
-
+                logger.warning('llm_extractor: rate limit hit, waiting %ds (attempt %d)', retry_delay, retry_count + 1)
                 time.sleep(retry_delay)
                 retry_count += 1
 
             except ServerError as e:
-
-                print(
-                    f"Server error ({e.code}). Waiting 10s before retry... "
-                    f"Attempt {retry_count + 1}"
-                )
-
+                logger.error('Component failed: server error (%s) on attempt %d', e.code, retry_count + 1)
                 time.sleep(10)
                 retry_count += 1
 
             except Exception as e:
-
-                print(f"Unexpected Error: {e}")
                 logger.error('Component failed: %s', e)
                 break
 

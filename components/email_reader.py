@@ -1,7 +1,21 @@
+"""Email reader component for the automation engine.
+
+This module handles Gmail mailbox access using IMAP to fetch
+emails and extract PDF invoice attachments for downstream
+processing. It provides two main functions: one for listing
+recent email subjects and another for locating the most
+recent email that contains a PDF attachment. Credentials are
+loaded from environment variables (EMAIL and PASSWORD). The
+module uses imap-tools for clean IMAP abstraction. All
+operations are wrapped in structured error handling with
+Python's logging module to ensure failures are captured
+without crashing the pipeline.
+"""
+
+import os
 import logging
 from imap_tools import MailBox
 from dotenv import load_dotenv
-import os
 
 logger = logging.getLogger(__name__)
 
@@ -11,7 +25,7 @@ EMAIL    = os.getenv("EMAIL")
 PASSWORD = os.getenv("PASSWORD")
 
 
-def fetch_emails(limit=10):
+def fetch_emails(limit: int = 10) -> list:
     try:
         emails = []
         with MailBox("imap.gmail.com").login(EMAIL, PASSWORD) as mailbox:
@@ -36,7 +50,8 @@ def fetch_emails(limit=10):
         raise
 
 
-def fetch_latest_pdf_email(limit=50):
+def fetch_latest_pdf_email(limit: int = 50) -> tuple:
+    """Return (subject, sender, pdf_bytes, filename) for the most recent email with a PDF attachment."""
     try:
         with MailBox("imap.gmail.com").login(EMAIL, PASSWORD) as mailbox:
             for msg in mailbox.fetch(reverse=True, limit=limit):
