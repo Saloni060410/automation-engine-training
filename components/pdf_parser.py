@@ -1,4 +1,5 @@
 import re
+import os
 
 #have added pytesseract for scanned image pdfs
 
@@ -53,6 +54,9 @@ CURRENCY_RE = re.compile(r"\b(AED|USD|INR|EUR|GBP)\b|([$₹€£])", re.I)
 def read_pdf_text(pdf_path):
     text = ""
 
+    if not os.path.exists(pdf_path):
+        raise FileNotFoundError(f"PDF file not found: '{pdf_path}'")
+
     try:
         doc = fitz.open(pdf_path)
 
@@ -67,8 +71,10 @@ def read_pdf_text(pdf_path):
             text += page_text + "\n"
 
         doc.close()
+    except FileNotFoundError:
+        raise
     except Exception as e:
-        print(f"Error reading PDF: {e}")
+        raise RuntimeError(f"Error reading PDF '{pdf_path}': {e}") from e
 
     return text
 

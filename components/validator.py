@@ -18,6 +18,8 @@ def validate_invoice(invoice: dict) -> dict:
         errors.append('Vendor not approved')
 
     amount = invoice.get('amount', 0)
+    if not isinstance(amount, (int, float)) or amount <= 0:
+        errors.append('Amount must be greater than zero')
     credit_limit = CREDIT_LIMITS.get(vendor)
     if credit_limit is not None and amount > credit_limit:
         errors.append(f'Amount exceeds credit limit of {credit_limit}')
