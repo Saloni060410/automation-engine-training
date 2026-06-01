@@ -1,0 +1,95 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "component": "email_reader",
+      "input_params": {
+        "limit": 2
+      },
+      "output_summary": [
+        {
+          "sender": "no-reply@slack.com",
+          "subject": "saloni has started a free trial of Slack Pro",
+          "date": "2026-06-01 21:12:39+00:00",
+          "body": "Hi Saloni,\r\n\r\nYour team\u2019s free 30 day trial of Slack Pro has started.\r\n\r\nEveryone in saloni can now experience premium features included in Slack\u2019s most popular paid plan.\r\n\r\nTrial ends on June 30th\r\n\r\nExperience Slack Pro for the next 30 days\r\n\r\nNo credit card required\r\n\r\nIf you decide not to upgrade by June 30th, this workspace will automatically go back to the free plan.\r\n\r\nMore messages and files now accessible\r\n\r\nYour team can now access saloni\u2019s unlimited message and file history, and summarize any conversation in seconds.*\r\nExplore in Slack [https://app.slack.com/x-p11255928727746-11249550703763-11255177255254/client/T0B7HTAMDMY/paid-benefits?entry_point=email_trial_activation]\r\n\r\nAlso unlocked with this trial\r\n\r\nSlack Connect channels\r\n\r\nSeamlessly collaborate with external connections\r\n\r\nGroup meetings with AI notes*\r\n\r\nHop on an audio or video call right in channel and leave the note-taking to AI*\r\n\r\nUnlimited app integrations\r\n\r\nConnect tools you use every day, including AI assistants*\r\n*An Admin/Owner must first enable AI for saloni\r\nExplore in Slack [https://app.slack.com/x-p11255928727746-11249550703763-11255177255254/client/T0B7HTAMDMY/paid-benefits?entry_point=email_trial_activation]\r\n\r\nQuestions? Contact our support team [https://saloni-tn21689.slack.com/x-p11255928727746-11249550703763-11255177255254/help/requests/new?entry_point=email_trial_activation] or learn more [https://saloni-tn21689.slack.com/x-p11255928727746-11249550703763-11255177255254/plans/pro?entry_point=email_trial_activation] about Slack Pro"
+        },
+        {
+          "sender": "no-reply-cITZTnjmHt0OUw98ttBbGtEv@slack.com",
+          "subject": "saloni on Slack: New Account Details",
+          "date": "2026-06-01 19:12:11+00:00",
+          "body": "Welcome to Slack\r\n\r\nHere are the account details for your Slack workspace.\r\n\r\nS\r\n\r\nsaloni\r\n\r\nsaloni-tn21689.slack.com []\r\n\r\nOPEN SLACK [https://saloni-tn21689.slack.com/x-p11255928727746-11249550703763-11254319506406/messages/C0B7EFT2KAR]\r\nInvite everyone you work with:\r\n\r\nDirectly send invites from your workspace\r\n\r\nInvite in Slack [https://saloni-tn21689.slack.com/x-p11255928727746-11249550703763-11254319506406/welcome/invite_members?utm_medium=email&utm_source=confirmation-new-creator]\r\n\r\nShare an invitation link\r\n\r\nhttps://join.slack.com/t/saloni-tn21689/shared_invite/zt-3znqqh04h-qJHTsyUbj0T6lPrXTAfWjA []\r\nSlack is better together:\r\n\r\nMessage in real time\r\n\r\nMeet using video calls\r\n\r\nShare documents\r\n\r\nIf you have any questions as you're getting started, drop us a note at help@slack.com. We're glad you're here!"
+        }
+      ],
+      "duration_seconds": 3.718,
+      "status": "success"
+    },
+    {
+      "step": 2,
+      "component": "pdf_parser",
+      "input_params": {
+        "pdf_path": "test_data/Invoice1.pdf"
+      },
+      "output_summary": {
+        "vendor": "Elite Moments Events LLC",
+        "invoice_no": "123",
+        "invoice_date": "23/05/2026",
+        "due_date": "06/06/2026",
+        "amount": "5,995",
+        "currency": "AED",
+        "line_items": [
+          {
+            "item_name": "LED Stage Setup",
+            "unit_price": "2,000",
+            "quantity": "2",
+            "amount": "4,000"
+          },
+          {
+            "item_name": "Photography & Videography",
+            "unit_price": "1,800",
+            "quantity": "1",
+            "amount": "1,800"
+          }
+        ]
+      },
+      "duration_seconds": 0.023,
+      "status": "success"
+    },
+    {
+      "step": 3,
+      "component": "llm_extractor",
+      "input_params": {
+        "raw_text": "Invoice Number: INV-001\nVendor: Vendor A\nAmount: 5000 INR\nDue Date: 2026-07-01"
+      },
+      "output_summary": {
+        "vendor": "Vendor A",
+        "invoice_no": "INV-001",
+        "amount": "5000",
+        "currency": "INR",
+        "invoice_date": null,
+        "due_date": "2026-07-01",
+        "line_items": []
+      },
+      "duration_seconds": 2.883,
+      "status": "success"
+    },
+    {
+      "step": 4,
+      "component": "validator",
+      "input_params": {
+        "invoice": {
+          "vendor": "Vendor A",
+          "amount": 5000,
+          "due_date": "2026-07-01",
+          "currency": "INR"
+        }
+      },
+      "output_summary": {
+        "valid": true,
+        "errors": []
+      },
+      "duration_seconds": 0.0,
+      "status": "success"
+    }
+  ],
+  "status": "completed"
+}

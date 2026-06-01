@@ -1,0 +1,13 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "component": "api_caller",
+      "input_params": {},
+      "output_summary": "Unknown component: api_caller",
+      "duration_seconds": null,
+      "status": "error"
+    }
+  ],
+  "status": "partial"
+}

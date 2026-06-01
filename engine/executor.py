@@ -18,6 +18,47 @@ COMPONENTS = {
 }
 
 
+def _chain_params(component_name: str, prev_result) -> dict:
+    """Build params for a step from the previous step's output when params is empty."""
+    if component_name == 'llm_extractor':
+        if isinstance(prev_result, dict):
+            raw_text = "\n".join(f"{k}: {v}" for k, v in prev_result.items() if v)
+        elif isinstance(prev_result, list):
+            raw_text = "\n".join(str(item) for item in prev_result)
+        else:
+            raw_text = str(prev_result)
+        return {'raw_text': raw_text}
+
+    if component_name == 'validator':
+        if hasattr(prev_result, 'model_dump'):
+            inv = prev_result.model_dump()
+        elif isinstance(prev_result, dict):
+            inv = prev_result
+        else:
+            return {}
+        try:
+            amount = float(str(inv.get('amount') or 0).replace(',', ''))
+        except (ValueError, TypeError):
+            amount = 0
+        return {'invoice': {
+            'vendor':   inv.get('vendor') or '',
+            'amount':   amount,
+            'due_date': inv.get('due_date') or '',
+            'currency': inv.get('currency') or '',
+        }}
+
+    if component_name == 'api_caller':
+        if hasattr(prev_result, 'model_dump'):
+            payload = prev_result.model_dump()
+        elif isinstance(prev_result, dict):
+            payload = prev_result
+        else:
+            payload = {'result': str(prev_result)}
+        return {'url': 'https://httpbin.org/post', 'payload': payload}
+
+    return {}
+
+
 def execute_workflow(workflow: list) -> dict:
     execution_log = {
         'steps': [],
@@ -25,11 +66,16 @@ def execute_workflow(workflow: list) -> dict:
     }
 
     has_error = False
+    prev_result = None
 
     for step in workflow:
         step_number = step.get('step')
         component_name = step.get('component')
         params = step.get('params', {})
+
+        # Auto-chain from previous step's output when params is empty
+        if not params and prev_result is not None:
+            params = _chain_params(component_name, prev_result)
 
         step_log = {
             'step': step_number,
@@ -50,7 +96,8 @@ def execute_workflow(workflow: list) -> dict:
 
         start = datetime.datetime.now()
         try:
-            result = component_fn(**params) if params else component_fn()
+            result = component_fn(**params)
+            prev_result = result
 
             # Summarize output for the log
             if hasattr(result, 'model_dump'):
