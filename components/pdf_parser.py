@@ -1,5 +1,8 @@
 import re
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 #have added pytesseract for scanned image pdfs
 
@@ -404,15 +407,20 @@ def extract_line_items(lines):
 
 
 def parse_invoice(pdf_path):
-    text = read_pdf_text(pdf_path)
-    lines = clean_lines(text)
-
-    return {
-        "vendor": extract_vendor(lines),
-        "invoice_no": extract_invoice_number(lines),
-        "invoice_date": extract_invoice_date(lines),
-        "due_date": extract_due_date(lines),
-        "amount": extract_total_amount(lines),
-        "currency": extract_currency(lines),
-        "line_items": extract_line_items(lines),
-    }
+    try:
+        text = read_pdf_text(pdf_path)
+        lines = clean_lines(text)
+        result = {
+            "vendor": extract_vendor(lines),
+            "invoice_no": extract_invoice_number(lines),
+            "invoice_date": extract_invoice_date(lines),
+            "due_date": extract_due_date(lines),
+            "amount": extract_total_amount(lines),
+            "currency": extract_currency(lines),
+            "line_items": extract_line_items(lines),
+        }
+        logger.info('pdf_parser: parsed %s', pdf_path)
+        return result
+    except Exception as e:
+        logger.error('Component failed: %s', e)
+        raise

@@ -29,6 +29,14 @@ def health_check():
     return {'status': 'ok'}
 
 
+@app.get('/health')
+def health():
+    return {
+        'status': 'ok',
+        'components': ['email_reader', 'pdf_parser', 'llm_extractor', 'validator', 'api_caller']
+    }
+
+
 @app.post('/run-workflow')
 def run_workflow(request: WorkflowRequest):
     try:

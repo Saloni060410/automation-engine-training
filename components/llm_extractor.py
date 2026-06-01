@@ -3,6 +3,9 @@
 import os
 import json
 import time
+import logging
+
+logger = logging.getLogger(__name__)
 
 import google.genai as genai
 from google.genai.errors import ClientError, ServerError
@@ -103,6 +106,7 @@ INVOICE TEXT:
 
                 parsed_json = json.loads(response_text)
 
+                logger.info('llm_extractor: extracted invoice using %s', model)
                 return InvoiceData(**parsed_json)
 
             except json.JSONDecodeError:
@@ -111,6 +115,7 @@ INVOICE TEXT:
                     f"JSON Parse Error. Retrying... "
                     f"Attempt {retry_count + 1}"
                 )
+                logger.error('Component failed: JSON parse error on attempt %d', retry_count + 1)
 
                 retry_count += 1
 
@@ -160,6 +165,7 @@ INVOICE TEXT:
             except Exception as e:
 
                 print(f"Unexpected Error: {e}")
+                logger.error('Component failed: %s', e)
                 break
 
     raise Exception(

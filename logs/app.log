@@ -1,0 +1,15 @@
+2026-06-02 02:44:40,084 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,085 INFO validator: valid=True errors=[]
+2026-06-02 02:44:40,108 INFO pdf_parser: parsed test_data/Invoice1.pdf
+2026-06-02 02:44:40,108 ERROR Component failed: PDF file not found: 'test_data/fake_invoice.pdf'
+2026-06-02 02:44:40,108 INFO validator: valid=False errors=['Vendor not approved']
+2026-06-02 02:44:40,108 INFO validator: valid=False errors=['Amount must be greater than zero']
+2026-06-02 02:44:40,108 INFO validator: valid=False errors=['Amount must be greater than zero']
+2026-06-02 02:44:40,108 INFO validator: valid=False errors=['Currency must be INR or USD']

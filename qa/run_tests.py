@@ -1,8 +1,16 @@
 import sys
 import os
+import logging
 import datetime
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+os.makedirs('logs', exist_ok=True)
+logging.basicConfig(
+    filename='logs/app.log',
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s'
+)
 
 import openpyxl
 from openpyxl.styles import PatternFill, Font, Alignment

@@ -1,4 +1,7 @@
+import logging
 import datetime
+
+logger = logging.getLogger(__name__)
 
 APPROVED_VENDORS = ['Vendor A', 'Vendor B', 'Vendor C', 'Vendor D']
 
@@ -11,6 +14,14 @@ CREDIT_LIMITS = {
 
 
 def validate_invoice(invoice: dict) -> dict:
+    try:
+      return _validate(invoice)
+    except Exception as e:
+        logger.error('Component failed: %s', e)
+        raise
+
+
+def _validate(invoice: dict) -> dict:
     errors = []
 
     vendor = invoice.get('vendor', '')
@@ -39,4 +50,6 @@ def validate_invoice(invoice: dict) -> dict:
     if currency not in ['INR', 'USD']:
         errors.append('Currency must be INR or USD')
 
-    return {'valid': len(errors) == 0, 'errors': errors}
+    result = {'valid': len(errors) == 0, 'errors': errors}
+    logger.info('validator: valid=%s errors=%s', result['valid'], errors)
+    return result

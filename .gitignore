@@ -4,3 +4,5 @@ venv/
 __pycache__/
 .vscode/
 .DS_STORE
+.~*.xlsx
+~$*.xlsx
